@@ -13,13 +13,12 @@ pipeline {
     stages {
         stage("First step") {
             steps {
-                sh 'echo hello world '
+                sh 'echo hello world'
             }
         }
-    
         stage("Create AWS machine") {
             steps {
-                sh 'cd terraformfiles '
+                sh 'cd terraformfiles'
             }
             steps {
                 sh 'terraform init'
