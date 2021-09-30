@@ -20,8 +20,8 @@ pipeline {
             steps {
                 sh 'cd mediumish-html/terraformfiles && terraform destroy -input=false'
                 sh 'cd mediumish-html/terraformfiles && terraform init -input=false'
-                sh 'cd mediumish-html/terraformfiles && terraform plan -input=false'
-                sh 'cd mediumish-html/terraformfiles && terraform apply -input=false -auto-approve'
+                sh 'cd mediumish-html/terraformfiles && terraform plan -out=tfplan -input=false'
+                sh 'cd mediumish-html/terraformfiles && terraform apply -input=false -auto-approve tfplan'
             }
         }
     }
