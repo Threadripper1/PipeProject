@@ -1,6 +1,6 @@
 //DevOps practice
 
-provider "AWS" {
+provider "aws" {
     access_key = "AKIAU7YO3OD34EVNO3V6"
     secret_key = "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"
     region = "us-east-2"
