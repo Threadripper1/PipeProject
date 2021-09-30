@@ -19,7 +19,7 @@ pipeline {
         stage("Create AWS machine") {
             steps {
                 sh 'cd mediumish-html/terraformfiles && pwd'
-                sh 'cd mediumish-html/terraformfiles && terraform init'
+                sh 'cd mediumish-html/terraformfiles && terraform init -input=false'
                 sh 'cd mediumish-html/terraformfiles && terraform plan -input=false'
                 sh 'cd mediumish-html/terraformfiles && terraform apply -auto-approve'
             }
