@@ -7,6 +7,6 @@ provider "aws" {
 }
 
 resource "aws_instance" "MainServer" {
-    ami = "ami-00399ec92321828f5"
+    ami = "ami-00dfe2c7ce89a450b"
     instance_type = "t2.micro"
 }
