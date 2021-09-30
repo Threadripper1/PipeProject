@@ -16,13 +16,9 @@ pipeline {
                 sh 'echo hello world'
             }
         }
-    }
-    stages {
         stage("Create AWS machine") {
             steps {
                 sh 'cd terraformfiles'
-            }
-            steps {
                 sh 'terraform init'
                 sh 'terraform apply -auto-approve'
             }
