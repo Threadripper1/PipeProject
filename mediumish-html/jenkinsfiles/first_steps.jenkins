@@ -1,18 +1,29 @@
 #!groovy
-properties([disableConcurrentBuilds()])
+properties([disableConcurrentBuilds()]) // blocked simultaneous execution builds
 
 pipeline {
     agent {
-        label 'master'
+        label 'master' // agent master
     }
+    //triggers {pollSCM{'*****'}}
     options {
-        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10')) // keept last 10 builds and artifacts
+        timestamps() // set a time frame
     }
     stages {
         stage("First step") {
             steps {
                 sh 'echo hello world '
+            }
+        }
+    stages {
+        stage("Create AWS machine") {
+            steps {
+                sh 'cd terraformfiles '
+            }
+            steps {
+                sh 'terraform init'
+                sh 'terraform apply -auto-approve'
             }
         }
     }
