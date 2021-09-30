@@ -1,8 +1,8 @@
 //DevOps practice
 
 provider "aws" {
-    access_key = "AKIAU7YO3OD35DBWL3JJ"
-    secret_key = "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"
+    access_key = "AKIAU7YO3OD3TN4QP2UX"
+    secret_key = "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"
     region = "us-east-2"
 }
 
