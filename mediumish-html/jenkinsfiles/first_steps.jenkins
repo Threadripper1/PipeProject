@@ -20,7 +20,6 @@ pipeline {
             steps {
                 cd mediumish-html/terraformfiles
                 sh 'pwd'
-                ll
                 sh 'terraform init'
                 sh 'terraform plan'
                 sh 'terraform apply -auto-approve'
