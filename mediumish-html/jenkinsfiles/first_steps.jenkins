@@ -18,7 +18,7 @@ pipeline {
         }
         stage("Create AWS machine") {
             steps {
-                sh 'sudo su -jenkins'
+                sh 'sudo su - jenkins'
                 sh 'cd mediumish-html/terraformfiles && terraform destroy -input=false'
                 sh 'cd mediumish-html/terraformfiles && terraform init '
                 sh 'cd mediumish-html/terraformfiles && terraform plan -input=true'
