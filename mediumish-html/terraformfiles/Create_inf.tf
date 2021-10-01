@@ -6,7 +6,11 @@ provider "aws" {
     region = "us-east-2"
 }
 
+<<<<<<< HEAD
 resource "aws_instance" "Main" {
+=======
+resource "aws_instance" "MainServer" {
+>>>>>>> ff7c69cc530539a6890c0724003edf015f309514
     ami = "ami-00dfe2c7ce89a450b"
     instance_type = "t2.micro"
 
