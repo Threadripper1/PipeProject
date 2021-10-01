@@ -1,5 +1,13 @@
 //DevOps practice
 
+terraform {
+  required_providers {
+    aws = {
+        source  = "hashicorp/aws"
+        version = "~> 3.0"
+    }
+  }
+}
 provider "aws" {
     access_key = "AKIAU7YO3OD3TN4QP2UX"
     secret_key = "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"
