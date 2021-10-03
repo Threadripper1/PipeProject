@@ -16,7 +16,7 @@ resource "aws_instance" "Main"{
     instance_type = "t2.micro"
 
     tags = {
-      Name = "Main Server"
+      Name = "Web Server"
       Owner = "Dmytro Kolomiiets"
     }
 }
