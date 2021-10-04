@@ -15,7 +15,7 @@ resource "aws_instance" "Main"{
   ami = "ami-00dfe2c7ce89a450b"
   instance_type = "t2.micro"
 
-  user_data = file("/var/lib/jenkins/.ssh/id_rsa")
+  user_data = file("/var/lib/jenkins/.ssh/copy_ssh.sh")
 
   tags = {
     Name = "Web Server"
