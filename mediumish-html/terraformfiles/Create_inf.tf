@@ -14,6 +14,7 @@ provider "aws" {}
 resource "aws_instance" "Main"{
     ami = "ami-00dfe2c7ce89a450b"
     instance_type = "t2.micro"
+    public_ip = "18.189.99.123"
 
     tags = {
       Name = "Web Server"
