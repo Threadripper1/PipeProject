@@ -16,7 +16,7 @@ resource "aws_instance" "Main"{
   instance_type = "t2.micro"
 
   user_data = file("/var/lib/jenkins/.ssh/id_rsa.pub")
-  
+
   tags = {
     Name = "Web Server"
     Owner = "Dmytro Kolomiiets"
