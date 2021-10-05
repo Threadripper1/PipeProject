@@ -28,8 +28,8 @@ resource "aws_instance" "WebServer"{
 
   user_data = file("/var/lib/jenkins/ssh_connection.sh")
 
-  provisioner "remote-exec" { 
-    inline = "cd ~/.ssh && echo '${tls_private_key.key.private_key_pem}' >> ${aws_key_pair.generated_key.key_name}.pem"
+  provisioner "local-exec" { 
+    command = "cd /home/ubuntu && touch WebServer.pem && echo '${tls_private_key.key.private_key_pem}' >> ${aws_key_pair.generated_key.key_name}.pem"
   }
 
   tags = {
