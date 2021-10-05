@@ -1,0 +1,2 @@
+[WebServers]
+WebServer    ansible_host=172.31.0.5    ansible_user=ubuntu    ansible_ssh_private_key=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/terraformfiles/WebServer.pem
