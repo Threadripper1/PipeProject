@@ -25,7 +25,7 @@ resource "aws_instance" "WebServer"{
   ami = "ami-00399ec92321828f5"
   instance_type = "t2.micro"
   key_name      = aws_key_pair.generated_key.key_name
-  private_ip = "172.31.16.20"
+  private_ip = "172.31.0.5"
 
   user_data = file("/var/lib/jenkins/ssh_connection.sh")
 
