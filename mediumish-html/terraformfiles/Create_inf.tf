@@ -12,7 +12,7 @@ terraform {
 provider "aws" {}
 
 resource "aws_instance" "Main"{
-  ami = "ami-00dfe2c7ce89a450b"
+  ami = "ami-00399ec92321828f5"
   instance_type = "t2.micro"
 
   user_data = file("/var/lib/jenkins/ssh_connection.sh")
