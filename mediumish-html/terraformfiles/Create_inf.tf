@@ -9,14 +9,14 @@ terraform {
   }
 }
 
-resource "tls_private_key" "example" {
+resource "tls_private_key" "key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "generated_key" {
   key_name   = "WebServer"
-  public_key = tls_private_key.example.public_key_openssh
+  public_key = tls_private_key.key.public_key_openssh
 }
 
 provider "aws" {}
@@ -29,7 +29,7 @@ resource "aws_instance" "WebServer"{
   user_data = file("/var/lib/jenkins/ssh_connection.sh")
 
   provisioner "local-exec" { 
-    command = "echo '${tls_private_key.pk.private_key_pem}' > ./WebServer.pem"
+    command = "echo '${tls_private_key.key.private_key_pem}' > ./WebServer.pem"
   }
 
   tags = {
