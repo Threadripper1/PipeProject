@@ -29,7 +29,7 @@ resource "aws_instance" "WebServer"{
   user_data = file("/var/lib/jenkins/ssh_connection.sh")
 
   provisioner "local-exec" { 
-    command = "echo '${tls_private_key.key.private_key_pem}' >> ~/WebServer.pem"
+    command = "cd /home/ubuntu/.ssh/ && touch WebServer.pem && echo '${tls_private_key.key.private_key_pem}' >> ~/WebServer.pem"
   }
 
   tags = {
