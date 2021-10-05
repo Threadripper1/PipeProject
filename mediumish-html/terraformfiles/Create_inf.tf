@@ -19,9 +19,9 @@ resource "aws_key_pair" "generated_key" {
   public_key = tls_private_key.example.public_key_openssh
 }
 
-provisioner "local-exec" { # Create "myKey.pem" to your computer!!
-    command = "echo '${tls_private_key.pk.private_key_pem}' > ./WebServer.pem"
-  }
+provisioner "local-exec" {
+  command = "echo '${tls_private_key.pk.private_key_pem}' > ./WebServer.pem"
+} 
 
 provider "aws" {}
 
