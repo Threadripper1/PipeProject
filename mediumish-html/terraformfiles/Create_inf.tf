@@ -19,10 +19,6 @@ resource "aws_key_pair" "generated_key" {
   public_key = tls_private_key.example.public_key_openssh
 }
 
-provisioner "local-exec" {
-  command = "echo '${tls_private_key.pk.private_key_pem}' > ./WebServer.pem"
-} 
-
 provider "aws" {}
 
 resource "aws_instance" "WebServer"{
@@ -31,6 +27,10 @@ resource "aws_instance" "WebServer"{
   key_name      = aws_key_pair.generated_key.key_name
 
   user_data = file("/var/lib/jenkins/ssh_connection.sh")
+
+  provisioner "local-exec" { 
+    command = "echo '${tls_private_key.pk.private_key_pem}' > ./WebServer.pem"
+  }
 
   tags = {
     Name = "Web Server"
