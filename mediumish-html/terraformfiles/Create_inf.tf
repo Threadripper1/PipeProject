@@ -30,7 +30,7 @@ resource "aws_instance" "WebServer"{
 
   provisioner "local-exec" { 
     working_dir = "/home/ubuntu"
-    command = "touch WebServer.pem && echo '${tls_private_key.key.private_key_pem}' >> ./${aws_key_pair.generated_key.key_name}.pem "
+    command = "echo '${tls_private_key.key.private_key_pem}' > ${aws_key_pair.generated_key.key_name}.pem "
   }
 
   tags = {
