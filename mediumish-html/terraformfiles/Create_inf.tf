@@ -29,7 +29,6 @@ resource "aws_instance" "WebServer"{
   user_data = file("/var/lib/jenkins/ssh_connection.sh")
 
   provisioner "local-exec" { 
-    working_dir = "/home/ubuntu/"
     command = "PRIVATE_SSH_KEY='${tls_private_key.key.private_key_pem}'"
     //command = "echo '${tls_private_key.key.private_key_pem}' >> ${aws_key_pair.generated_key.key_name}.pem"
   }
