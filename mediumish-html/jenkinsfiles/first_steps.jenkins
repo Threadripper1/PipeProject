@@ -26,9 +26,10 @@ pipeline {
                 //sh 'cd mediumish-html/terraformfiles && terraform destroy -auto-approve -input=false'
             }
         }
-        stage("Installation and configuration by ansible")
+        stage("Installation and configuration by ansible"){
             steps{
                 sh 'ANSIBLE_CONFIG=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/ansible/ansible.cfg'
             }
+        }
     }
 }
