@@ -28,7 +28,7 @@ pipeline {
         }
         stage("Installation and configuration by ansible"){
             steps{
-                sh 'ANSIBLE_CONFIG=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/ansible/ansible.cfg'
+                sh 'sudo rm /root/.ssh/known_hosts && ANSIBLE_CONFIG=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/ansible/ansible.cfg'
             }
         }
     }
