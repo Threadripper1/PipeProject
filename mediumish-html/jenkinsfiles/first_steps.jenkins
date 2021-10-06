@@ -29,7 +29,7 @@ pipeline {
             steps{
                 sleep(30)
                 sh 'chmod 600 /var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/terraformfiles/WebServer.pem '
-                sh 'ansible WebServers -m shell -a "echo \"ubuntu ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers" -b'
+                sh 'EXECUTE_COMMAND="echo ubuntu ALL=(ALL) NOPASSWD:ALL" && ansible WebServers -m shell -a "$EXECUTE_COMMAND >> /etc/sudoers" -b'
                 sh 'ansible WebServers -m setup'
                 sh 'ansible WebServers -m shell -a "sudo apt-get -y update"'
                 sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2"'
