@@ -5,13 +5,13 @@ pipeline {
     agent {
         label 'master' // agent master
     }
-    //triggers {pollSCM{'*****'}}
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10')) // keept last 10 builds and artifacts
         timestamps() // set a time frame
     }
     stages {
-        stage("First step") {
+        stage("Working Github WebHook") {
             steps {
                 sh 'echo $USER && pwd'
             }
@@ -27,6 +27,7 @@ pipeline {
         }
         stage("Installation and configuration by ansible"){
             steps{
+                sleep(30)
                 sh 'ansible WebServers -m setup'
                 sh 'ansible WebServers -m shell -a "sudo apt-get update && sudo apt-get -y upgrade"'
                 sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2"'
