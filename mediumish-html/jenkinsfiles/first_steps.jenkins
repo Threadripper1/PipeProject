@@ -28,13 +28,14 @@ pipeline {
         }
         stage("Setting up the Server and setting it up from ansible"){
             steps{
-                sh 'ansible WebServers -m shell -a "sudo apt-get -y update" -b'
-                sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2" -b'
-                sh 'ansible WebServers -m file -a "path=/etc/apache2/sites-available/000-default.conf state=absent" -b'
-                sh 'ansible WebServers -m copy -a "src=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/apache2_files/000-default.conf dest=/etc/apache2/sites-available/" -b'
-                sh 'ansible WebServers -m copy -a "src=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html dest=/var/www/" -b'
-                sh 'ansible WebServers -m shell -a "sudo systemctl restart apache2" -b'
-            }
+                sh 'ansible-playbook /var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/ansible/install_server.yml'
+            //     sh 'ansible WebServers -m shell -a "sudo apt-get -y update" -b'
+            //     sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2" -b'
+            //     sh 'ansible WebServers -m file -a "path=/etc/apache2/sites-available/000-default.conf state=absent" -b'
+            //     sh 'ansible WebServers -m copy -a "src=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/apache2_files/000-default.conf dest=/etc/apache2/sites-available/" -b'
+            //     sh 'ansible WebServers -m copy -a "src=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html dest=/var/www/" -b'
+            //     sh 'ansible WebServers -m shell -a "sudo systemctl restart apache2" -b'
+             }
         }
     }
 }

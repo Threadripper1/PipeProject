@@ -1,0 +1,23 @@
+---
+- name: Install and configurate apache WebServer
+ hosts: WebServers
+ become: yes
+
+ vars:
+  source_file: /var/lib/jenkins/workspace/DevOpsPipe/mediumish-html
+  conf_file: /etc/apache2/sites-available
+
+ tasks:
+ - name: Installing Apache WebServer
+  apt: name=update state=latest
+  apt: name=apache2 state=latest
+
+ - name: Deleting default.conf
+  file: path={{conf_file}}/000-default.conf state=absent
+
+ - name: Copy configure file and frontend files
+  copy: src={{source_file}}/apache2_files/000-default.conf dest={{conf_file}}
+  copy: src={{source_file}} dest=/var/www
+
+ - name: Restarting apache2 service
+  systemctl: name=apache2 state=restarted
