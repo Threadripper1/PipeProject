@@ -32,6 +32,7 @@ pipeline {
                 sh 'ansible WebServers -m setup'
                 sh 'ansible WebServers -m shell -a "sudo apt-get update && sudo apt-get -y upgrade"'
                 sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2"'
+                sh 'ansible WebServers -m shell -a "systemctl start apache2'
             }
         }
     }
