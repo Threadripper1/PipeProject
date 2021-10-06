@@ -29,10 +29,11 @@ pipeline {
             steps{
                 sleep(30)
                 sh 'chmod 600 /var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/terraformfiles/WebServer.pem '
+                sh 'sudo su'
                 sh 'ansible WebServers -m setup'
                 sh 'ansible WebServers -m shell -a "sudo apt-get -y update"'
-                sh 'ansible WebServers -m shell -a "sudo apt-get install -y httpd"'
-                sh 'ansible WebServers -m shell -a "systemctl start httpd"'
+                sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2"'
+                sh 'ansible WebServers -m shell -a "systemctl start apache2" && whoami'
             }
         }
     }
