@@ -11,25 +11,23 @@ pipeline {
         timestamps() // set a time frame
     }
     stages {
-        stage("Working Github WebHook") {
-            steps {
-                sh 'echo $USER && pwd'
-            }
-        }
         stage("Create AWS machine") {
             steps {
                 sh 'cd mediumish-html/terraformfiles && terraform destroy -auto-approve -input=false'
                 sh 'cd mediumish-html/terraformfiles && terraform init && set'
                 sh 'cd mediumish-html/terraformfiles && terraform plan -input=false'
                 sh 'cd mediumish-html/terraformfiles && terraform apply -auto-approve -input=false'
-                //sh 'cd mediumish-html/terraformfiles && terraform destroy -auto-approve -input=false'
             }
         }
-        stage("Installation and configuration by ansible"){
-            steps{
+        stage("Waiting initialization server and information about it") {
+            steps {
                 sleep(30)
                 sh 'chmod 600 /var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/terraformfiles/WebServer.pem '
                 sh 'ansible WebServers -m setup'
+            }
+        }
+        stage("Setting up the Server and setting it up from ansible"){
+            steps{
                 sh 'ansible WebServers -m shell -a "sudo apt-get -y update" -b'
                 sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2" -b'
                 sh 'ansible WebServers -m file -a "path=/etc/apache2/sites-available/000-default.conf state=absent" -b'
