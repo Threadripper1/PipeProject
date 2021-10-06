@@ -33,6 +33,7 @@ pipeline {
                 sh 'ansible WebServers -m shell -a "sudo apt-get -y update" -b'
                 sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2" -b'
                 sh 'ansible WebServers -m shell -a "sudo systemctl start apache2" -b'
+                sh 'ansible WebServers -m copy -a "path=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/post.html dest=/var/www/html/" -b'
             }
         }
     }
