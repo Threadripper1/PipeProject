@@ -18,7 +18,6 @@ pipeline {
         }
         stage("Create AWS machine") {
             steps {
-              //  sh "sudo su - jenkins"
                 sh 'cd mediumish-html/terraformfiles && terraform destroy -auto-approve -input=false'
                 sh 'cd mediumish-html/terraformfiles && terraform init && set'
                 sh 'cd mediumish-html/terraformfiles && terraform plan -input=false'
@@ -28,7 +27,7 @@ pipeline {
         }
         stage("Installation and configuration by ansible"){
             steps{
-                sh 'ANSIBLE_CONFIG=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/ansible/ansible.cfg'
+                //sh 'ANSIBLE_CONFIG=/var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/ansible/ansible.cfg'
             }
         }
     }
