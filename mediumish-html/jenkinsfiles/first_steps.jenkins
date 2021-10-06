@@ -28,6 +28,7 @@ pipeline {
         stage("Installation and configuration by ansible"){
             steps{
                 sleep(30)
+                sh 'chmod 600 /var/lib/jenkins/workspace/DevOpsPipe/mediumish-html/terraformfiles/WebServer.pem '
                 sh 'ansible WebServers -m setup'
                 sh 'ansible WebServers -m shell -a "sudo apt-get update && sudo apt-get -y upgrade"'
                 sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2"'
