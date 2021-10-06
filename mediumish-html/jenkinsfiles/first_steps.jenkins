@@ -27,7 +27,9 @@ pipeline {
         }
         stage("Installation and configuration by ansible"){
             steps{
-                sh 'ansible all -m ping'
+                sh 'ansible WebServers -m setup'
+                sh 'ansible WebServers -m shell -a "sudo apt-get update && sudo apt-get -y upgrade"'
+                sh 'ansible WebServers -m shell -a "sudo apt-get install -y apache2"'
             }
         }
     }
