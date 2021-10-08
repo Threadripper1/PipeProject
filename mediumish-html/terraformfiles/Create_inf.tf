@@ -1,4 +1,4 @@
-//DevOps practice
+//DevOps practice test
 
 terraform {
   required_providers {
